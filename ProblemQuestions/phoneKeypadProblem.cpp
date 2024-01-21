@@ -11,24 +11,23 @@ class Solution {
                 result.push_back(output);
                 return;
             }
-
-            //exclude
-            slove(str, index + 1, output, result, mapper);
-
-            //include
-            char element = str[index];
-            string value = mapper[element - '0'];
-            for (int i = 0; i < value.length(); i++){
+            int number = str[index] - '0';
+            string value =mapper[number];
+            for (int i = 0; i< value.size(); i++){
                 output.push_back(value[i]);
-                slove(str, index + 1, output, result, mapper);
+                slove(str, index+1, output, result, mapper);
                 output.pop_back();
             }
+            
         }
     
     public:
         vector<string> phoneKeyPad(string str){
-            int index = 0;
             vector<string> result;
+            if (str.size() == 0){
+                return result;
+            }
+            int index = 0;
             string output = "";
             string mapper[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
             slove(str, index, output, result, mapper);
@@ -37,5 +36,11 @@ class Solution {
 };
 
 int main(){
+    string str = "23";
+    Solution obj;
+    vector<string> ans = obj.phoneKeyPad(str);
+    for (int i = 0; i < ans.size(); i++){
+        cout << ans[i] << endl;
+    }
     return 0;
 }
