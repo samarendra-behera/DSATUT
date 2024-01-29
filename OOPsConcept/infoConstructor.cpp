@@ -22,6 +22,12 @@ class Hero {
         this->level = level;
     }
 
+    // Define copy constructor
+    Hero(Hero &temp){
+        this->health = temp.health + 10;
+        this->level = temp.level;
+    }
+
     int getHealth(){
         return health;
     }
@@ -36,6 +42,9 @@ class Hero {
     void setLevel(char l){
         level = l;
     }
+    void print(){
+        cout<<"Health is: "<< this->health << " and level is: " << this->level << endl;
+    }
 };
 
 int main (){
@@ -49,6 +58,22 @@ int main (){
     // Hero *h = new Hero();
     // cout<< "Dynamic constructor call end" << endl;
 
-    // 
+    // Parameterized constructor
+    // static parameterized constructor call
+    // Hero papu(70);
+    // dynamic parameterized constructor call
+    // Hero *h = new Hero(80, 'A');
+    // cout << papu.getHealth() << endl;
+    // cout << papu.getLevel() << endl;
+    // cout << h->getHealth() << endl;
+    // cout << h->getLevel() << endl;
+
+    // Copy constructor
+    Hero h1(70, 'A');
+    h1.print();
+
+    // copy constructor call
+    Hero h2(h1);
+    h2.print();
     return 0;
 }
