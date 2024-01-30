@@ -18,17 +18,34 @@ class Node {
     }
 };
 
-void insertAtTail(Node* &tail, int data){
-    Node* temp = new Node(data);
-    tail -> next = temp;
-    tail = tail -> next;
-}
+
 void insertAtHead(Node* &head, int data){
     Node* newNode = new Node(data);
     newNode -> next = head;
     head = newNode;
 }
+void insertAtTail(Node* &tail, int data){
+    Node* temp = new Node(data);
+    tail -> next = temp;
+    tail = temp;
+}
+void insertAtMiddle(int position,int data, Node* &head){
+    if (position == 1){
+        insertAtHead(head, data);
+        return;
+    }
+    Node* temp = new Node(data);
+    int i = 1;
+    Node* add = head;
+    while(i<position-1){ 
+        add = add->next;
+        i++;
+    }
+    Node* store = add -> next;
+    add ->next = temp;
+    temp->next = store;
 
+}
 void printNode(Node* &head){
     Node* temp = head;
     while(temp != NULL){
@@ -43,15 +60,26 @@ int main(){
     // cout<< node1 -> data << endl;
     // cout<< node1 -> next << endl;
 
-    // Insert At Head
     Node* head = node1;
+    Node* tail = node1;
+
+    // Insert At Head
+    // printNode(head);
+    // insertAtHead(head, 15);
+    // printNode(head);
+    // insertAtHead(head, 20);
+    // printNode(head);
+
+    // Insert At Tail
     printNode(head);
-    insertAtHead(head, 15);
+    insertAtTail(tail, 15);
     printNode(head);
-    insertAtHead(head, 20);
+    insertAtTail(tail, 20);
     printNode(head);
 
-
+    // Insert At Middle
+    insertAtMiddle(5, 22, head);
+    printNode(head);
 
     return 0;
 
