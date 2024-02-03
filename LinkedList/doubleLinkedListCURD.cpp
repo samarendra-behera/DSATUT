@@ -1,3 +1,5 @@
+//Double Linked List Inserting , Traversing, Deletion
+
 #include<iostream>
 using namespace std;
 class Node{
@@ -110,11 +112,12 @@ void deleteNode(int position, Node* &head , Node* &tail){
         curr->prev = NULL;
         prev->next = curr->next;
         curr->next = NULL;
-        prev->next->prev = prev;
         delete curr;
         
         if(prev->next==NULL){
             tail = prev;
+        }else{
+            prev->next->prev = prev;
         }
     }
 }
