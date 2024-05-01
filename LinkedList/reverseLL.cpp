@@ -42,6 +42,6 @@ int getLength(Node* &head){
 
 int main(){
     Node* head = NULL;
-    Node* tail = NULL;
+    Node* tail = NULL;    
     return 0;
 }
