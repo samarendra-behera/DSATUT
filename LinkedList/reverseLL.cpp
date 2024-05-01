@@ -1,47 +1,56 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Node{
-    public:
-        int data;
-        Node* next ;
-    Node(int d){
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node(int d)
+    {
         this->data = d;
         this->next = NULL;
     }
 };
 
-Node * reverseLinkedList2(Node* &head){
+Node *reverseLinkedList2(Node *&head)
+{
     // Base case
-    if(head==NULL || head->next == NULL){
+    if (head == NULL || head->next == NULL)
+    {
         return head;
     }
 
-    Node* smallHead = reverseLinkedList2(head->next);
+    Node *smallHead = reverseLinkedList2(head->next);
     head->next->next = head;
     head->next = NULL;
     return smallHead;
 }
 
-Node* reverseLL(Node* head){
-    if(head == NULL || head->next == NULL){
+Node *reverseLL(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
         return head;
     }
-    Node* prev = NULL;
-    Node* curr = head;
-    Node* forward = NULL;
-    while(curr != NULL){
-        forward = curr -> next;
-        curr -> next = prev;
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *forward = NULL;
+    while (curr != NULL)
+    {
+        forward = curr->next;
+        curr->next = prev;
         prev = curr;
         curr = forward;
     }
     return prev;
 }
 
-void reverseLinkedList(Node* &head, Node* curr, Node* prev){
+void reverseLinkedList(Node *&head, Node *curr, Node *prev)
+{
     // Base case
-    if(curr==NULL){
+    if (curr == NULL)
+    {
         head = prev;
         return;
     }
@@ -49,41 +58,48 @@ void reverseLinkedList(Node* &head, Node* curr, Node* prev){
     curr->next = prev;
 }
 
-void insertAtTail(Node* &tail, Node* &head, int data){
-    if(tail==NULL){
-        Node* newNode = new Node(data);
-        head=newNode;
+void insertAtTail(Node *&tail, Node *&head, int data)
+{
+    if (tail == NULL)
+    {
+        Node *newNode = new Node(data);
+        head = newNode;
         tail = newNode;
-    }else{
-        Node* temp = new Node(data);
-        tail -> next = temp;
+    }
+    else
+    {
+        Node *temp = new Node(data);
+        tail->next = temp;
         tail = temp;
     }
 }
-void printNode(Node* &head){
-    Node* temp = head;
-    while(temp != NULL){
-        cout<< " " <<temp -> data << " ";
-        temp = temp -> next;
+void printNode(Node *&head)
+{
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        cout << " " << temp->data << " ";
+        temp = temp->next;
     }
-    cout<< endl;
+    cout << endl;
 }
-int getLength(Node* &head){
-    Node* temp = head;
+int getLength(Node *&head)
+{
+    Node *temp = head;
     int cnt = 0;
-    while(temp!=NULL){
+    while (temp != NULL)
+    {
         temp = temp->next;
         cnt++;
     }
     return cnt;
 }
 
-int main(){
-    Node* head = NULL;
-<<<<<<< HEAD
-    Node* tail = NULL;    
-=======
-    Node* tail = NULL;
+int main()
+{
+    Node *head = NULL;
+    Node *tail = NULL;
+    Node *tail = NULL;
     insertAtTail(tail, head, 10);
     insertAtTail(tail, head, 20);
     insertAtTail(tail, head, 30);
@@ -93,12 +109,11 @@ int main(){
     printNode(head);
     // Loop Method
     // Node* newHead = reverseLL(head);
-    
+
     // Recursive Method
     // reverseLinkedList(head, head, NULL);
     // printNode(head);
-    Node* newhead = reverseLinkedList2(head);
+    Node *newhead = reverseLinkedList2(head);
     printNode(newhead);
->>>>>>> d69f68163572d7538da4d061b6958585d9b15a3b
     return 0;
 }
