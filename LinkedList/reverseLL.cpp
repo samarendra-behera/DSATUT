@@ -11,6 +11,44 @@ class Node{
     }
 };
 
+Node * reverseLinkedList2(Node* &head){
+    // Base case
+    if(head==NULL || head->next == NULL){
+        return head;
+    }
+
+    Node* smallHead = reverseLinkedList2(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return smallHead;
+}
+
+Node* reverseLL(Node* head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* forward = NULL;
+    while(curr != NULL){
+        forward = curr -> next;
+        curr -> next = prev;
+        prev = curr;
+        curr = forward;
+    }
+    return prev;
+}
+
+void reverseLinkedList(Node* &head, Node* curr, Node* prev){
+    // Base case
+    if(curr==NULL){
+        head = prev;
+        return;
+    }
+    reverseLinkedList(head, curr->next, curr);
+    curr->next = prev;
+}
+
 void insertAtTail(Node* &tail, Node* &head, int data){
     if(tail==NULL){
         Node* newNode = new Node(data);
@@ -42,6 +80,25 @@ int getLength(Node* &head){
 
 int main(){
     Node* head = NULL;
+<<<<<<< HEAD
     Node* tail = NULL;    
+=======
+    Node* tail = NULL;
+    insertAtTail(tail, head, 10);
+    insertAtTail(tail, head, 20);
+    insertAtTail(tail, head, 30);
+    insertAtTail(tail, head, 40);
+    insertAtTail(tail, head, 50);
+    insertAtTail(tail, head, 60);
+    printNode(head);
+    // Loop Method
+    // Node* newHead = reverseLL(head);
+    
+    // Recursive Method
+    // reverseLinkedList(head, head, NULL);
+    // printNode(head);
+    Node* newhead = reverseLinkedList2(head);
+    printNode(newhead);
+>>>>>>> d69f68163572d7538da4d061b6958585d9b15a3b
     return 0;
 }
