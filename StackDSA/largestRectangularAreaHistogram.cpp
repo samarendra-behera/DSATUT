@@ -65,7 +65,6 @@ int main(){
         int width = next[i] - prev[i] -1;
 
         int a = height * width;
-        cout<<a<<" ";
         largArea = max(largArea, a); 
     }
     cout<<endl;
