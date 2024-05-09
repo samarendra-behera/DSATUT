@@ -16,7 +16,8 @@ public:
 
     bool enqueue(int val)
     {
-        if ((front == 0 && rear == size - 1) || (rear == (front - 1) % (size - 1)))
+        cout<<front<<rear<<size<<endl;
+        if ((front == 0 && rear == size - 1) || (rear == (front - 1) % (size)))
         {
             return false;
         }
@@ -100,13 +101,10 @@ public:
 
 int main()
 {
-    CircularQueue q(3);
+    CircularQueue q(2);
     q.enqueue(1);
-    q.enqueue(2);
-    q.enqueue(3);
-    bool b = q.enqueue(4);
-    cout << b << endl;
-    cout << q.Rear() << endl;
-    cout << q.Front() << endl;
+    bool d = q.enqueue(2);
+    cout<<d<<endl;
+    
     return 0;
 }
