@@ -36,6 +36,8 @@ class Deque{
             }else{
                 rear++;
             }
+            arr[rear]=value;
+            return true;
         }
         int popFront(){
             if(front==-1){
@@ -68,6 +70,30 @@ class Deque{
             }
             return prev;
         }
+        int getFront(){
+            if(front==-1){
+                return -1;
+            }
+            return arr[front];
+        }
+        int getRear(){
+            if(front==-1){
+                return -1;
+            }
+            return arr[rear];
+        }
+        bool isFull(){
+            if((front==0 && rear==size-1) || (rear== (front-1)%size)){
+                return true;
+            }
+            return false;
+        }
+        bool isEmpty(){
+            if(front==-1){
+                return true;
+            }
+            return false;
+        }
 };
 
 int main(){
@@ -93,6 +119,38 @@ int main(){
         cout<<"Dubble Endded Queue is not Empty"<<endl;
     }
     */
+
+    Deque d(3);
+    d.pushBack(23);
+    d.pushFront(24);
+    cout<<d.getFront()<<endl;
+    cout<<d.getRear()<<endl;
+
+    d.popBack();
+    cout<<d.getFront()<<endl;
+    cout<<d.getRear()<<endl;
+    d.popFront();
+    cout<<d.getFront()<<endl;
+    cout<<d.getRear()<<endl;
+
+    if(d.isEmpty()){
+        cout<<"Queue is Empty"<<endl;
+    }else{
+        cout<<"Queue is not Empty"<<endl;
+    }
+
+    d.pushBack(20);
+    d.pushFront(30);
+    d.pushBack(40);
+
+    cout<<d.getFront()<<endl;
+    cout<<d.getRear()<<endl;
+    if(d.isFull()){
+        cout<<"Queue is Full"<<endl;
+    }else{
+        cout<<"Queue is not Full"<<endl;
+    }
+
     
     return 0;
 }
