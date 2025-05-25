@@ -26,6 +26,30 @@ def build_tree(root):
     return root
 
 
+def build_from_level_order():
+    d = deque()
+
+    data = int(input("Enter data for root: "))
+    root = Node(data)
+    d.append(root)
+
+    while(len(d) != 0):
+        temp = d[0]
+        d.popleft()
+
+        leftData = int(input(f"Enter left node for: { temp.data}\n"))
+        if(leftData != -1):
+            temp.left = Node(leftData)
+            d.append(temp.left)
+
+        rightData = int(input(f"Enter right node for: {temp.data}\n"))
+        if(rightData != -1):
+            temp.right =  Node(rightData)
+            d.append(temp.right)
+    
+    return root
+
+
 def level_order_traversal(root):
     d = deque()
     d.append(root)
@@ -73,17 +97,44 @@ def postorder_traversal(root): # LRN
     postorder_traversal(root.right)
     print(root.data , end=" ")
 
+
+count = 0
+def get_noof_leafnode(root):
+    if not root:
+        return
+    
+    get_noof_leafnode(root.left)
+
+    if((not root.left) and (not root.right)):
+        global count
+        count +=1
+    
+    get_noof_leafnode(root.right)
+
+
+
+
 if __name__ == '__main__':
-    root = None
-    root = build_tree(root)
-    # input 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+    # CLASS 1 Code Execute
+    # root = None
+    # root = build_tree(root)
+    # # input 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+    # level_order_traversal(root)
+
+    # print("\n\n In order traversal \n")
+    # inorder_traversal(root)
+
+    # print("\n\n Pre order traversal \n")
+    # preorder_traversal(root)
+
+    # print("\n\n Post order traversal \n")
+    # postorder_traversal(root)
+
+    # CLASS 2 Code Execute
+
+    root = build_from_level_order()
     level_order_traversal(root)
 
-    print("\n\n In order traversal \n")
-    inorder_traversal(root)
-
-    print("\n\n Pre order traversal \n")
-    preorder_traversal(root)
-
-    print("\n\n Post order traversal \n")
-    postorder_traversal(root)
+    # get leaf node count 
+    get_noof_leafnode(root)
+    print("Number of leaf node is : ", count)
