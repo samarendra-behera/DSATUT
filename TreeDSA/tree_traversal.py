@@ -131,7 +131,6 @@ if __name__ == '__main__':
     # postorder_traversal(root)
 
     # CLASS 2 Code Execute
-
     root = build_from_level_order()
     level_order_traversal(root)
 
