@@ -3,7 +3,7 @@ from tree_traversal import build_from_level_order, level_order_traversal
 
 
 def vertical_traversal(root):
-    track_map = defaultdict(list);
+    track_map = defaultdict(list)
     d = deque()
     mn, mx = 0, 0
     if(root == None):
